@@ -19,7 +19,6 @@ const config: sql.config = {
     },
 };
 
-
 // Variabilă globală pentru pool
 let globalPool: sql.ConnectionPool | null = null;
 

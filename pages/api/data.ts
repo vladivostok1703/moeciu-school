@@ -2,14 +2,14 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getDbConnection } from '../../lib/db';
 
 export default async function handler(
-    req: NextApiRequest,
+    _req: NextApiRequest,
     res: NextApiResponse
 ) {
     try {
         const pool = await getDbConnection();
 
         // Exemplu: Execută o interogare SQL
-        const result = await pool.request().query('SELECT TOP 10 * FROM dbo.test');
+        const result = await pool.request().query('SELECT TOP 10 * FROM dbo.test2');
 
         res.status(200).json(result.recordset);
     } catch (error) {
