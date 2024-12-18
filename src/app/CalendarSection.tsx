@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
 // Funcții pentru a obține zilele și începutul lunii
 const getDaysInMonth = (year: number, month: number) => {
@@ -29,22 +29,28 @@ const CalendarSection: React.FC = () => {
     const rows = [];
     let dayCounter = 0;
 
-    for (let i = 0; i < 6; i++) {  // 6 rânduri max, pentru săptămânile lunii
+    for (let i = 0; i < 6; i++) {
+      // 6 rânduri max, pentru săptămânile lunii
       const cells = [];
-      for (let j = 0; j < 7; j++) {  // 7 zile pe săptămână
+      for (let j = 0; j < 7; j++) {
+        // 7 zile pe săptămână
         if (i === 0 && j < firstDay) {
-          cells.push(<td key={j}></td>);  // Zilele înainte de prima zi a lunii
+          cells.push(<td key={j}></td>); // Zilele înainte de prima zi a lunii
         } else if (dayCounter < daysInMonth) {
           dayCounter++;
           cells.push(
             <td key={j}>
-              <button className={dayCounter === new Date().getDate() ? 'current-day' : ''}>
+              <button
+                className={
+                  dayCounter === new Date().getDate() ? "current-day" : ""
+                }
+              >
                 {dayCounter}
               </button>
             </td>
           );
         } else {
-          cells.push(<td key={j}></td>);  // Zilele după ultima zi a lunii
+          cells.push(<td key={j}></td>); // Zilele după ultima zi a lunii
         }
       }
       rows.push(<tr key={i}>{cells}</tr>);
@@ -71,11 +77,12 @@ const CalendarSection: React.FC = () => {
 
   return (
     <CalendarWrapper>
-      
       <NavButtons>
         <button onClick={handlePrevYear}>Anul precedent</button>
         <button onClick={handlePrevMonth}>Luna precedentă</button>
-        <span>{currentDate.toLocaleString('default', { month: 'long' })} {year}</span>
+        <span>
+          {currentDate.toLocaleString("default", { month: "long" })} {year}
+        </span>
         <button onClick={handleNextMonth}>Luna următoare</button>
         <button onClick={handleNextYear}>Anul următor</button>
       </NavButtons>
@@ -107,7 +114,7 @@ const CalendarWrapper = styled.div`
   overflow: hidden;
   width: 100%;
   padding: 20px;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   color: #333;
 `;
 
@@ -118,7 +125,7 @@ const NavButtons = styled.div`
   margin-bottom: 20px;
 
   button {
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -169,7 +176,7 @@ const CalendarTable = styled.table`
   td button {
     background-color: transparent;
     border: none;
-    color: #4CAF50;
+    color: #4caf50;
     font-size: 1.1rem;
     padding: 5px 10px;
     border-radius: 50%;
@@ -178,7 +185,7 @@ const CalendarTable = styled.table`
   }
 
   td button:hover {
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
   }
 
