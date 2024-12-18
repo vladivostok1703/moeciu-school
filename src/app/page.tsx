@@ -103,6 +103,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Welcome from './Welcome.tsx'
+import ValuesSection from './ValuesSection.tsx'
+import StatsSection from './StatsSection.tsx'
+import NewsSection from './NewsSection.tsx'
+import Footer from './Footer.tsx'
+import CalendarSection from './CalendarSection.tsx'
+import PhotoGallery from './PhotoGallery.tsx'
+import LocationSection from './LocationSection.tsx'
+import ResourcesSection from './ResourcesSection.tsx'
+
+
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -117,7 +128,15 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Pagina Principală</h1>
+      <Welcome/>
+      <ValuesSection/>
+      <StatsSection/>
+      {/* <NewsSection/> */}
+      <CalendarSection/>
+      {/* <PhotoGallery/> */}
+      <LocationSection/>
+      <ResourcesSection/>
+      <Footer/>
       <ul>
         {data.map((item: any, index: number) => (
           <li key={index}>{item.name}</li>
