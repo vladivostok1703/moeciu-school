@@ -92,7 +92,7 @@
 //             alt="Globe icon"
 //             width={16}
 //             height={16}
-//           />
+//           /> 
 //           Go to nextjs.org →
 //         </a>
 //       </footer>
@@ -102,10 +102,13 @@
 
 "use client";
 
+// page.tsx
 import { useEffect, useState } from "react";
+import Navbar from "./Navbar";  // acest import rămâne neschimbat
+
 
 export default function Home() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     // Exemplu: Fetch date dintr-un API
@@ -117,12 +120,8 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Pagina Principală</h1>
-      <ul>
-        {data.map((item: any, index: number) => (
-          <li key={index}>{item.name}</li>
-        ))}
-      </ul>
+      {/* Navbar-ul modernizat */}
+      <Navbar />
     </div>
   );
 }
