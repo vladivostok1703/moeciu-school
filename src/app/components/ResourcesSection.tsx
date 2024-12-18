@@ -1,13 +1,13 @@
 import React from "react";
-import { FileDown } from 'lucide-react'
-import Button from './components/ui/Button'
+import { FileDown } from "lucide-react";
+import Button from "../components/ui/Button";
 
 export default function ResourcesSection() {
   const resources = [
-    { name: 'Student Handbook', url: '/student-handbook.pdf' },
-    { name: 'Academic Calendar', url: '/academic-calendar.pdf' },
-    { name: 'Course Catalog', url: '/course-catalog.pdf' },
-  ]
+    { name: "Student Handbook", url: "/student-handbook.pdf" },
+    { name: "Academic Calendar", url: "/academic-calendar.pdf" },
+    { name: "Course Catalog", url: "/course-catalog.pdf" },
+  ];
 
   return (
     <section id="resources" className="py-16">
@@ -24,6 +24,5 @@ export default function ResourcesSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-

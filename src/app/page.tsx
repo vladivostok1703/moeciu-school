@@ -1,24 +1,15 @@
 "use client";
 
-// page.tsx
 import { useEffect, useState } from "react";
-
-import Navbar from "./Navbar"; // acest import rămâne neschimbat
-import Welcome from "./Welcome.tsx";
-import ValuesSection from "./ValuesSection.tsx";
-import StatsSection from "./StatsSection.tsx";
-import NewsSection from "./NewsSection.tsx";
-import Footer from "./Footer.tsx";
-import CalendarSection from "./CalendarSection.tsx";
-import PhotoGallery from "./PhotoGallery.tsx";
-import LocationSection from "./LocationSection.tsx";
-import ResourcesSection from "./ResourcesSection.tsx";
+import Navbar from "@/app/components/Navbar";
+import MainPage from "@/app/components/MainPage";
+import Footer from "@/app/components/Footer";
 
 export default function Home() {
   const [data, setData] = useState<any[]>([]);
 
+  // Exemplu: Fetch date (comentat momentan)
   // useEffect(() => {
-  //   // Exemplu: Fetch date dintr-un API
   //   fetch("/api/data")
   //     .then((response) => response.json())
   //     .then((data) => setData(data))
@@ -26,23 +17,15 @@ export default function Home() {
   // }, []);
 
   return (
-    <div>
-      {/* Navbar-ul modernizat */}
+    <div className="flex flex-col min-h-screen">
+      {/* Navbar-ul fix sus */}
       <Navbar />
-      <Welcome />
-      <ValuesSection />
-      <StatsSection />
-      {/* <NewsSection/> */}
-      <CalendarSection />
-      {/* <PhotoGallery/> */}
-      <LocationSection />
-      <ResourcesSection />
+
+      {/* Secțiunea principală a paginii */}
+      <MainPage />
+
+      {/* Footer-ul fix jos */}
       <Footer />
-      {/*     <ul>
-          {data.map((item: any, index: number) => (
-          <li key={index}>{item.name}</li>
-        ))}
-      </ul> */}
     </div>
   );
 }
