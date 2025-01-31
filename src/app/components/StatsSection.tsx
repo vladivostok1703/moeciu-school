@@ -1,49 +1,145 @@
+// 'use client'
+
+// import { useState, useEffect } from 'react'
+// import { motion, useAnimation } from 'framer-motion'
+// import { useInView } from 'react-intersection-observer'
+
+// interface Stat {
+//   label: string
+//   value: number
+// }
+
+// const stats: Stat[] = [
+//   { label: 'Elevi', value: 150 },
+//   { label: 'Profesori', value: 20 },
+//   { label: 'Sali de clasa', value: 12 },
+// ]
+
+// export default function StatsSection() {
+//   const controls = useAnimation()
+//   const [ref, inView] = useInView()
+
+//   useEffect(() => {
+//     if (inView) {
+//       controls.start('visible')
+//     }
+//   }, [controls, inView])
+
+//   return (
+//     <section ref={ref} className="section bg-gray-200">
+//       <div className="container">
+//         <div className="stats-grid">
+//           {stats.map((stat) => (
+//             <motion.div
+//               key={stat.label}
+//               className="stat-item"
+//               initial="hidden"
+//               animate={controls}
+//               variants={{
+//                 visible: { opacity: 1, y: 0 },
+//                 hidden: { opacity: 0, y: 50 }
+//               }}
+//               transition={{ duration: 0.5, ease: 'easeOut' }}
+//             >
+//               <AnimatedCounter value={stat.value} duration={15000} />
+//               <div className="stat-label">{stat.label}</div>
+//             </motion.div>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
+
+// function AnimatedCounter({ value, duration }: { value: number; duration: number }) {
+//   const [count, setCount] = useState(0)
+
+//   useEffect(() => {
+//     let startTimestamp: number | null = null
+//     const step = (timestamp: number) => {
+//       if (!startTimestamp) startTimestamp = timestamp
+//       const progress = Math.min((timestamp - startTimestamp) / duration, 1)
+//       setCount(Math.floor(progress * value))
+//       if (progress < 1) {
+//         window.requestAnimationFrame(step)
+//       }
+//     }
+//     window.requestAnimationFrame(step)
+//   }, [value, duration])
+
+//   return <div className="stat-value">{count}</div>
+// }
+
+
+
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, useAnimation } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import { useState, useEffect, useRef } from 'react'
+import { Users, GraduationCap, School } from 'lucide-react'
 
-interface Stat {
-  label: string
-  value: number
-}
-
-const stats: Stat[] = [
-  { label: 'Elevi', value: 150 },
-  { label: 'Profesori', value: 20 },
-  { label: 'Sali de clasa', value: 12 },
+const stats = [
+  { 
+    label: 'Elevi', 
+    value: 500,
+    icon: Users,
+    description: 'elevi înscriși'
+  },
+  { 
+    label: 'Profesori', 
+    value: 20,
+    icon: GraduationCap,
+    description: 'cadre didactice'
+  },
+  { 
+    label: 'Clase', 
+    value: 10,
+    icon: School,
+    description: 'săli de clasă'
+  },
 ]
 
 export default function StatsSection() {
-  const controls = useAnimation()
-  const [ref, inView] = useInView()
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    if (inView) {
-      controls.start('visible')
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
     }
-  }, [controls, inView])
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
 
   return (
-    <section ref={ref} className="section bg-gray-200">
+    <section ref={sectionRef} className="section bg-gray-100">
       <div className="container">
+        <h2 className="section-title animate-on-scroll">Școala Noastră în Cifre</h2>
         <div className="stats-grid">
-          {stats.map((stat) => (
-            <motion.div
-              key={stat.label}
-              className="stat-item"
-              initial="hidden"
-              animate={controls}
-              variants={{
-                visible: { opacity: 1, y: 0 },
-                hidden: { opacity: 0, y: 50 }
-              }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
+          {stats.map((stat, index) => (
+            <div 
+              key={index} 
+              className={`stat-item ${isVisible ? 'animate-on-scroll' : ''}`}
+              style={{ animationDelay: `${index * 400}ms` }}
             >
-              <AnimatedCounter value={stat.value} duration={15000} />
+              <stat.icon className="stat-icon" />
+              <AnimatedCounter value={stat.value} duration={4000} isVisible={isVisible} />
               <div className="stat-label">{stat.label}</div>
-            </motion.div>
+              <p className="text-gray-600 text-sm">{stat.description}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -51,10 +147,12 @@ export default function StatsSection() {
   )
 }
 
-function AnimatedCounter({ value, duration }: { value: number; duration: number }) {
+function AnimatedCounter({ value, duration, isVisible }: { value: number; duration: number; isVisible: boolean }) {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
+    if (!isVisible) return
+
     let startTimestamp: number | null = null
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp
@@ -65,7 +163,7 @@ function AnimatedCounter({ value, duration }: { value: number; duration: number 
       }
     }
     window.requestAnimationFrame(step)
-  }, [value, duration])
+  }, [value, duration, isVisible])
 
   return <div className="stat-value">{count}</div>
 }

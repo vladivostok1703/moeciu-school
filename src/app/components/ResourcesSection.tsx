@@ -1,28 +1,55 @@
-import React from "react";
-import { FileDown } from "lucide-react";
-import Button from "../components/ui/Button";
+'use client'
+
+import { FileText, Book, Calendar, Download } from 'lucide-react'
+import { getTargetTriple } from 'next/dist/build/swc/generated-native';
+
+
+const resources = [
+  {
+    title: 'Orar Școlar',
+    icon: Calendar,
+    description: 'Descarcă orarul actualizat al claselor',
+    url: '/ORAR_SEM_1_IESC_rev_16.pdf'
+  },
+  {
+    title: 'Manuale Digitale',
+    icon: Book,
+    description: 'Acces la manualele digitale',
+    url: 'https://www.unitbv.ro/biblioteca/264-resurse-electronice/1359-carti-online.html',
+    target: '_blank'
+    
+  },
+  {
+    title: 'Regulament Intern',
+    icon: FileText,
+    description: 'Regulamentul școlar intern',
+    url: '/Regulament_activitate_profesionala_studenti_2024-2025_30.09.2024.pdf'
+  }
+]
 
 export default function ResourcesSection() {
-  const resources = [
-    { name: "Student Handbook", url: "/student-handbook.pdf" },
-    { name: "Academic Calendar", url: "/academic-calendar.pdf" },
-    { name: "Course Catalog", url: "/course-catalog.pdf" },
-  ];
-
   return (
-    <section id="resources" className="py-16">
-      <div className="container mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center">Resources</h2>
-        <div className="flex flex-col items-center space-y-4">
+    <section className="section bg-gray-100">
+      <div className="container">
+        <h2 className="section-title">Resurse Educaționale</h2>
+        <div className="resources-grid">
           {resources.map((resource, index) => (
-            <Button key={index} asChild>
-              <a href={resource.url} download>
-                <FileDown className="mr-2 h-4 w-4" /> {resource.name}
-              </a>
-            </Button>
+            <a
+              key={index}
+              href={resource.url}
+              className="resource-card"
+              download
+              target={resource.target || '_self'}
+            >
+              <resource.icon className="w-12 h-12 mx-auto mb-4 text-primary-color" />
+              <h3 className="text-xl font-semibold mb-2">{resource.title}</h3>
+              <p className="text-gray-600 mb-4">{resource.description}</p>
+              <Download className="w-6 h-6 mx-auto text-gray-400" />
+            </a>
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }
+
