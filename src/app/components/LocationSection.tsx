@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -13,11 +13,22 @@ const DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function LocationSection() {
+  const [isClient, setIsClient] = useState(false);
   const position: [number, number] = [45.502717, 25.336684];
+
+  // Set isClient la true pentru a verifica că suntem pe client
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return <div>Încărcare hartă...</div>; // Poți returna un loading în cazul în care suntem pe server
+  }
 
   return (
     <div style={{ height: "400px", width: "100%" }}>
       <MapContainer
+        key={position.join(",")} // This ensures the map is re-rendered only when position changes
         center={position}
         zoom={13}
         style={{ height: "100%", width: "100%" }}

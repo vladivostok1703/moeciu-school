@@ -1,13 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: [
+    "./src/app/**/*.{js,ts,jsx,tsx}", // Toate fișierele din "src/app"
+    "./src/components/**/*.{js,ts,jsx,tsx}", // Toate componentele din "components"
+  ],
   theme: {
-    extend: {
-      colors: {
-        'blue-50': '#f0f9ff',  // Adăugăm culoarea blue-50
-      },
-    },
+    extend: {},
   },
   plugins: [],
-}
-
+};
