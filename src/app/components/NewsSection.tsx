@@ -1,78 +1,58 @@
-'use client'
+import { supabase } from "../../../lib/supabaseClient";
+import {useEffect, useState} from "react";
+import Image from "next/image";
+type Post = {
+  id: number;
+  title: string;
+  date: string;
+  content: string;
+  image_url: string;
+};
 
-import { useRef, useEffect } from 'react'
-import Image from 'next/image'
-
-const news = [
-  {
-    title: 'Patru elevi ai Școlii Gimnaziale din Moieciu de Jos, note de 10 la Evaluarea Națională.',
-    date: '7 Iulie 2023',
-    content: 'Elevii de 10 ai Școlii Gimnaziale Moieciu de Jos sunt: Drăgan Doina, Albușoiu Ștefania, Mânjină Sonia și Cioban Radu.',
-    image: '/elevi-de-10-1024x1024.png'
-  },
-  {
-    title: 'Directorul Școlii Gimnaziale Moieciu de Jos, o nouă performanță sportivă de marcă',
-    date: '27 Iunie 2023',
-    content: 'Duminică 25.06.2023 la Cocorăști Mislii s-a desfășurat Campionatul Național de Alergare Montană Masters, unde profesorul Marius Olteanu, director la Școala Gimnazială Moieciu de Jos, legitimat la CSM Brașov, a obținut o nouă performanță remarcabilă prin clasarea pe cea mai înaltă treaptă a podiumului, devenind Campion Național la categoria M45!',
-    image: '/marius-olteanu.png'
-  },
-  {
-    title: 'Școala Gimnazială Moieciu de Jos i-a comemorat pe eroii neamului',
-    date: '18 Mai 2018',
-    content: 'Evenimentul a fost organizat de Școala Gimnazială Moieciu de Jos, în fața Monumentului ridicat în cinstea eroilor care s-au jerfit pentru patria noastră.',
-    image: '/elevi-moeciu-comemorare-eroi.png'
-  }
-]
-
-export default function NewsSection() {
-  const sectionRef = useRef<HTMLElement>(null)
+export default function PostsPage() {
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-on-scroll')
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
+    const fetchPosts = async () => {
+      const { data, error } = await supabase.from("Post").select("id, title, date, content, image_url");
+      if (error) {
+        console.error("Eroare la fetch:", error);
+      } else {
+        setPosts(data);
+      }
+    };
 
-    const cards = document.querySelectorAll('.news-card')
-    cards.forEach(card => observer.observe(card))
-
-    return () => observer.disconnect()
-  }, [])
+    fetchPosts();
+  }, []);
 
   return (
-    <section ref={sectionRef} className="section">
-      <div className="container">
-        <h2 className="section-title">Noutăți și Evenimente</h2>
-        <div className="news-grid">
-          {news.map((item, index) => (
-            <article 
-              key={index} 
-              className="news-card"
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              <Image
-                src={item.image}
-                alt={item.title}
-                width={400}
-                height={200}
-                className="news-image"
-              />
-              <div className="news-content">
-                <div className="text-sm text-gray-500 mb-2">{item.date}</div>
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.content}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
+      <section className="py-12 bg-gray-100">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">Noutăți și Evenimente</h2>
 
+          {/* GRID RESPONSIV */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {posts.map((post) => (
+                <article
+                    key={post.id}
+                    className="bg-white rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
+                >
+                  <Image
+                      src={post.image_url}
+                      alt={post.title}
+                      width={400}
+                      height={250}
+                      className="w-full h-48 object-cover"
+                  />
+                  <div className="p-4">
+                    <div className="text-sm text-gray-500">{post.date}</div>
+                    <h3 className="text-lg font-semibold text-gray-900 mt-2">{post.title}</h3>
+                    <p className="text-gray-600 mt-2 line-clamp-3">{post.content}</p>
+                  </div>
+                </article>
+            ))}
+          </div>
+        </div>
+      </section>
+  );
+}
