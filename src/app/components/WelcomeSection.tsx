@@ -16,8 +16,8 @@ export default function WelcomeSection() {
           </div>
           <div className="welcome-image-container animate-on-scroll delay-200">
             <Image
-               src="/300063406_596371548860443_7495238156915760607_n.png"
-              alt="Școala Gimnazială Mareșal Alexandru Averescu"
+              src="/300063406_596371548860443_7495238156915760607_n.png"
+              alt="Școala Gimnazială Moieciu de Jos"
               fill
               style={{ objectFit: 'cover' }}
               priority

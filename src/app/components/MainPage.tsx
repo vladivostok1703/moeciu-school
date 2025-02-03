@@ -14,7 +14,7 @@ export default function Home() {
         <section id="values">
           <ValuesSection />
         </section>
-        <section id="stats">
+        <section>
           <StatsSection />
         </section>
         <section id="news">

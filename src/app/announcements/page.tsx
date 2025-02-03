@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useState, useEffect } from "react"
 import Navbar from "@/app/components/Navbar"
@@ -35,6 +35,7 @@ export default function Calendar() {
   const [selectedDate, setSelectedDate] = useState<number | null>(null)
   const [selectedMonth, setSelectedMonth] = useState<number>(new Date().getMonth())
   const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear())
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     async function fetchEvents() {
@@ -45,6 +46,7 @@ export default function Calendar() {
         console.log("Evenimente preluate:", data)
         setEvents(data.map((event) => ({ ...event, date: new Date(event.date) })))
       }
+      setLoading(false)
     }
     fetchEvents()
   }, [])
@@ -82,13 +84,19 @@ export default function Calendar() {
     }
   }
 
+  const renderLoadingSpinner = () => (
+    <div className="flex justify-center items-center h-48">
+      <div className="loader"></div> {/* Poți folosi o componentă spinner sau CSS simplu */}
+    </div>
+  )
+
   return (
     <PageTransition>
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-1 flex flex-col items-center p-6">
-          <h1 className="text-3xl font-bold mt-9 mb-9">Calendar Evenimente</h1>
-          <p className="w-[800px] mb-9 text-center mx-auto">
+          <h1 className="text-3xl font-bold mt-9 mb-9 text-center">Calendar Evenimente</h1>
+          <p className="w-[100%] md:w-[800px] mb-9 text-center mx-auto">
             Această pagină îți permite să vizualizezi evenimentele programate într-un calendar interactiv. Poți selecta
             orice lună și an pentru a vedea evenimentele care au loc în acea perioadă. Fiecare zi în calendar va fi
             marcată dacă există evenimente planificate, iar la selectarea unei zile, vei putea vizualiza o listă
@@ -109,15 +117,15 @@ export default function Calendar() {
             </div>
 
             <div className="border border-gray-200 rounded-lg overflow-hidden">
-              <div className="grid grid-cols-7">
+              <div className="grid grid-cols-7 sm:grid-cols-5 md:grid-cols-7 gap-2">
                 {WEEKDAYS.map((day) => (
-                  <div key={day} className="p-4 text-center bg-blue-500 text-white font-medium">
+                  <div key={day} className="p-4 text-center bg-blue-500 text-white font-medium text-xs sm:text-sm md:text-base">
                     {day}
                   </div>
                 ))}
               </div>
 
-              <div className="grid grid-cols-7">
+              <div className="grid grid-cols-7 sm:grid-cols-5 md:grid-cols-7 gap-2">
                 {[...Array(firstDayOfMonth)].map((_, i) => (
                   <div key={`empty-${i}`} className="p-4 border-t border-r border-gray-200" />
                 ))}
@@ -131,9 +139,7 @@ export default function Calendar() {
                       key={day}
                       onClick={() => setSelectedDate(day)}
                       className={`p-4 border-t border-r border-gray-200 text-center hover:bg-gray-50
-                        ${isEventDay ? "font-bold text-blue-600" : ""}
-                        ${isSelected ? "bg-blue-50" : ""}
-                      `}
+                        ${isEventDay ? "font-bold text-blue-600" : ""} ${isSelected ? "bg-blue-50" : ""}`}
                     >
                       {day}
                     </button>
@@ -142,7 +148,7 @@ export default function Calendar() {
               </div>
             </div>
 
-            {selectedDate && (
+            {loading ? renderLoadingSpinner() : selectedDate && (
               <div className="mt-6 p-4 border rounded-lg bg-white shadow-lg">
                 <h2 className="text-xl font-bold">
                   Evenimente pe {selectedDate}/{selectedMonth + 1}/{selectedYear}
@@ -169,4 +175,3 @@ export default function Calendar() {
     </PageTransition>
   )
 }
-

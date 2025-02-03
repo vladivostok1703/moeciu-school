@@ -31,7 +31,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">
           Nume
@@ -41,7 +41,7 @@ export default function ContactForm() {
           id="name"
           name="name"
           required
-          className="mt-1 block w-1/2 mx-auto rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          className="mt-1 block w-full sm:w-1/2 mx-auto rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
         />
       </div>
       <div>
@@ -53,7 +53,7 @@ export default function ContactForm() {
           id="email"
           name="email"
           required
-          className="mt-1 block w-1/2 mx-auto rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          className="mt-1 block w-full sm:w-1/2 mx-auto rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
         />
       </div>
       <div>
@@ -64,14 +64,14 @@ export default function ContactForm() {
           id="message"
           name="message"
           required
-          className="mt-1 block w-1/2 mx-auto h-32 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          className="mt-1 block w-full sm:w-1/2 mx-auto h-32 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
         ></textarea>
       </div>
       <div className="text-center">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+          className="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
         >
           {isSubmitting ? "Se trimite..." : "Trimite mesajul"}
         </button>
@@ -79,4 +79,3 @@ export default function ContactForm() {
     </form>
   )
 }
-

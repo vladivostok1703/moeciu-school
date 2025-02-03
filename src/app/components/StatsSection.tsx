@@ -51,7 +51,7 @@ export default function StatsSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="section bg-gray-100">
+    <section ref={sectionRef} className="section bg-gray-100" id="stats">
       <div className="container">
         <h2 className="section-title animate-on-scroll">Școala Noastră în Cifre</h2>
         <div className="stats-grid">
