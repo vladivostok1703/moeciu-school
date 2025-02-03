@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import dynamic from "next/dynamic"
 import { Mail, MapPin, Phone } from "lucide-react"
@@ -8,7 +8,6 @@ import BackToTop from "@/app/components/BackToTop"
 import LocationSection from "@/app/components/LocationSection"
 import ContactFormWrapper from "@/app/components/ContactFormWrapper"
 
-// Dynamically import PageTransition to avoid SSR issues
 const PageTransition = dynamic(() => import("@/app/components/PageTransition"), {
   ssr: false,
 })
