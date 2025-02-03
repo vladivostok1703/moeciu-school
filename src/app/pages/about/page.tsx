@@ -1,12 +1,12 @@
 "use client";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import BackToTop from "../components/BackToTop";
-import ValuesSection from "../components/ValuesSection";
-import Testimonials from "../components/Testimonials";
+import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
+import BackToTop from "@/app/components/BackToTop";
+import ValuesSection from "@/app/components/ValuesSection";
+import Testimonials from "@/app/components/Testimonials";
 import Image from "next/image";
-import PageTransition from "../components/PageTransition";
+import PageTransition from "@/app/components/PageTransition";
 
 export default function Despre() {
   return (

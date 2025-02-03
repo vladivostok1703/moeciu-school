@@ -19,19 +19,19 @@ export default function Navbar() {
             Acasă
           </Link>
           <Link
-            href="/about"
+            href="/pages/about"
             className="hover:text-black-600 transition duration-300"
           >
             Despre Noi
           </Link>
           <Link
-            href="/announcements"
+            href="/pages/announcements"
             className="hover:text-black-600 transition duration-300"
           >
             Anunțuri
           </Link>
           <Link
-            href="/contact"
+            href="/pages/contact"
             className="hover:text-black-600 transition duration-300"
           >
             Contact

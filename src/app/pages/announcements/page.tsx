@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react"
 import Navbar from "@/app/components/Navbar"
 import Footer from "@/app/components/Footer"
-import { supabase } from "../../../lib/supabaseClient"
-import PageTransition from "../components/PageTransition"
+import { supabase } from "../../../../lib/supabaseClient"
+import PageTransition from "../../components/PageTransition"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 type Event = {

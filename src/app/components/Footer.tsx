@@ -36,10 +36,10 @@ export default function Footer() {
           <div className="footer-links">
           <h3>Informații Utile</h3>
           <ul>
-            <li><a href="/about">Despre Noi</a></li>
-            <li><a href="/announcements">Anunturi</a></li>
-            <li><a href="/teachers">Profesorii Noștri</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/pages/about">Despre Noi</a></li>
+            <li><a href="/pages/announcements">Anunturi</a></li>
+            <li><a href="/pages/teachers">Profesorii Noștri</a></li>
+            <li><a href="/pages/contact">Contact</a></li>
           </ul>
           </div>
         </div>
