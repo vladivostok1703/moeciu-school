@@ -7,7 +7,7 @@ export default function Navbar() {
     <nav className="bg-gray-100 text-black-900 py-4 shadow-md border-b border-gray-300">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-2xl font-bold tracking-wide">
-          Școala Gimnazială Moeciu de Jos
+          Școala Gimnazială Moieciu de Jos
         </div>
         <div className="space-x-6 text-lg">
           <Link href="/" className="hover:text-blue-600 transition duration-300">

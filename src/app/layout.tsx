@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Scoala Gimnaziala Moeciu De Jos",
-  description: "Scoala Gimnaziala Moeciu de Jos",
+  title: "Scoala Gimnaziala Moieciu De Jos | Site Oficial",
+  description: "Scoala Gimnaziala Moieciu de Jos",
   icons: {
     icon: "/icon.png",
     shortcut: "/favicon.ico",
