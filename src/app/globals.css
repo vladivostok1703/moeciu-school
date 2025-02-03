@@ -177,9 +177,6 @@ button.navbar-link:focus {
   }
 }
 
-/* Stiluri pentru secțiunea Despre Noi */
-
-/* src/app/globals.css */
 
 /* Resetarea stilurilor implicite pentru margini, padding etc. */
 * {
@@ -730,8 +727,6 @@ body {
 .calendar-day:hover {
   background-color: #f3f4f6;
 }
-
-
 
 /* Location Section Styles */
 .location-card {

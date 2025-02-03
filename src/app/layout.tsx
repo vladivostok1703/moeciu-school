@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -16,7 +15,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Scoala Gimnaziala Moeciu De Jos",
-  description: "",
+  description: "Scoala Gimnaziala Moeciu de Jos",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
