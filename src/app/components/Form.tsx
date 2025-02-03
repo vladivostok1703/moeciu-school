@@ -4,14 +4,22 @@ import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { submitContactForm } from "@/app/components/actions/submit-contact-form"
 
+// Define a type for the toast module
+type ToastModule = {
+  toast: {
+    error: (message: string) => void
+    success: (message: string) => void
+  }
+}
+
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
-  const [toastModule, setToastModule] = useState<any>(null)
+  const [toastModule, setToastModule] = useState<ToastModule | null>(null)
 
   useEffect(() => {
     import("react-hot-toast").then((module) => {
-      setToastModule(module)
+      setToastModule(module as ToastModule)
     })
   }, [])
 
