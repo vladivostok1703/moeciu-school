@@ -1,13 +1,19 @@
 "use client"
 
 import type React from "react"
-import { useState, useRef } from "react"
-import { toast } from "react-hot-toast"
+import { useState, useRef, useEffect } from "react"
 import { submitContactForm } from "@/app/components/actions/submit-contact-form"
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
+  const [toastModule, setToastModule] = useState<any>(null)
+
+  useEffect(() => {
+    import("react-hot-toast").then((module) => {
+      setToastModule(module)
+    })
+  }, [])
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -17,11 +23,13 @@ export default function ContactForm() {
     const result = await submitContactForm(formData)
 
     setIsSubmitting(false)
-    if (result.error) {
-      toast.error(result.error)
-    } else if (result.success) {
-      toast.success(result.success)
-      formRef.current?.reset()
+    if (toastModule) {
+      if (result.error) {
+        toastModule.toast.error(result.error)
+      } else if (result.success) {
+        toastModule.toast.success(result.success)
+        formRef.current?.reset()
+      }
     }
   }
 
