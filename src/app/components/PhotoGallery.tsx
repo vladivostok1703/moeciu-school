@@ -7,11 +7,9 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const photos = [
   "/300063406_596371548860443_7495238156915760607_n.png",
-  '/300063406_596371548860443_7495238156915760607_n.png',
-  '/300063406_596371548860443_7495238156915760607_n.png',
-  '/300063406_596371548860443_7495238156915760607_n.png',
-  '/300063406_596371548860443_7495238156915760607_n.png',
-  '/photo6.jpg',
+  '/elevi-moeciu-comemorare-eroi.png',
+  '/Voluntari-7.jpg',
+  '/Voluntari-10.jpg',
 ]
 
 export default function PhotoGallery() {
