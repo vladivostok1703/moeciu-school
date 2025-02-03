@@ -26,7 +26,7 @@ export default function LocationSection() {
   }
 
   return (
-    <div style={{ height: "400px", width: "100%" }}>
+    <div style={{ height: "300px", width: "100%" }}>
       <MapContainer
         key={position.join(",")} // This ensures the map is re-rendered only when position changes
         center={position}

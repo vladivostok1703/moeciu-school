@@ -33,7 +33,7 @@ export default function PhotoGallery() {
   return (
     <section className="py-16 bg-gray-200">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center">Photo Gallery</h2>
+        <h2 className="section-title">Galerie Foto</h2>
         <div className="relative h-96 w-full max-w-3xl mx-auto">
           <AnimatePresence initial={false}>
             <motion.div
@@ -41,7 +41,7 @@ export default function PhotoGallery() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 2 }}
               className="absolute inset-0"
             >
               <Image

@@ -1,10 +1,9 @@
 import WelcomeSection from "./WelcomeSection";
 import ValuesSection from "./ValuesSection";
 import StatsSection from "./StatsSection";
-import CalendarSection from "./CalendarSection";
-import LocationSection from "./LocationSection";
 import ResourcesSection from "./ResourcesSection";
 import NewsSection from "./NewsSection";
+import PhotoGallery from "./PhotoGallery";
 
 export default function Home() {
   return (
@@ -22,7 +21,7 @@ export default function Home() {
           <NewsSection />
         </section>
         <section id="calendar">
-          <CalendarSection />
+          <PhotoGallery />
         </section>
         <section id="resources">
           <ResourcesSection />

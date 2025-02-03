@@ -1,7 +1,6 @@
 'use client'
 
 import { FileText, Book, Calendar, Download } from 'lucide-react'
-import { getTargetTriple } from 'next/dist/build/swc/generated-native';
 
 
 const resources = [

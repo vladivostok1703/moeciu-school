@@ -6,7 +6,6 @@ dotenv.config();
 
 const nextConfig: NextConfig = {
   webpack(config) {
-    // Configurează aliasul '@' pentru a face referire la directorul 'src'
     config.resolve.alias['@'] = path.join(__dirname, 'src');
     return config;
   },
