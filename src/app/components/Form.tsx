@@ -23,7 +23,7 @@ export default function ContactForm() {
         toast.success(result.success)
         formRef.current?.reset()
       }
-    } catch (error) {
+    } catch {
       toast.error("A apărut o eroare. Vă rugăm să încercați din nou.")
     } finally {
       setIsSubmitting(false)
