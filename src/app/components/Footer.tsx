@@ -2,12 +2,6 @@
 
 import Image from 'next/image'
 import { Facebook, Mail, Phone, MapPin } from 'lucide-react'
-import dynamic from 'next/dynamic'
-
-const LocationSection = dynamic(() => import('./LocationSection'), {
-  ssr: false,
-  loading: () => <p>Încărcare hartă...</p>
-})
 
 export default function Footer() {
   return (
